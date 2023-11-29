@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+<link rel="stylesheet" href="/stylesheets/login.css">
+<div class="loginMainDIv">
+
+    <div class="formHolder">
+       
+        <form action="/otpV/<% useremail._id %>" class="loginForm" method="post">
+            <h1>Verify OTP</h1>
+            <span class="inputHolder"><i class="ri-user-5-line"></i><input type="text" placeholder="OTP" name="otp" class="username"></span>
+                <span class="alertMsg"><%= checkOtpMsg %></span>
+            <button class="loginBtn loginBtns">Log-In</button>
+        </form>
+        <span class="changeBtnHolder">
+                    <p class="ptag"><span class="changeTxt">back To login Page</span> <a href="/login">Log-In</a></p>
+        </span>
+    </div>
+
+</div>
+<%- include('partials/footer') %>
+
+<!-- <script src="/javascripts/login.js"></script> -->
+</body>
+</html>

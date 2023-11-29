@@ -1,0 +1,183 @@
+<style>
+
+    .propAll{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background-color: #0088cc;
+        /* border-top: 1px solid #ddd; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        overflow-x: scroll;
+        padding-bottom: 50px;
+    }
+    .propAll::-webkit-scrollbar{
+        display: none;
+    }
+    .propUpD{
+        width: 100%;
+        height: 100px;
+        /* background-color: #fff; */
+        display: flex;
+        align-items: end;
+        justify-content: center;
+        padding: 0 10px;
+        font-family: sans-serif;
+        gap: 2vmax;
+        color: #ddd;
+        position: relative;
+    }
+    .proDP{
+        width: 270px; 
+        height: 270px;
+        background: url(images/ani.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        transform: translateY(180px);
+        border: 5px solid #fff;
+        display: flex;
+        align-items: end;
+        justify-content: end;
+        border-radius: 10%;
+        position: relative;
+        /* left: 2%; */
+    }
+    .propdown{
+        width: 100%;
+        /* height: 100%; */
+        background-color: #ddd;
+        border-radius: 1vmax 1vmax 0 0;
+        padding-top: 200px;
+        /* overflow-x: scroll; */
+    }
+    .changeDP{
+        font-size: 30px;
+        color: #0088cc;
+        background-color: #fff;
+        padding: 5px;
+        border-radius: 50%;
+        transform: translateX(10px) translateY(10px);
+        box-shadow: 0 0 5px #606060;
+    }
+    .onlineStatus{
+        font-size: 12px;
+        color: #ddd;
+        font-weight: 100;
+    }
+    .proNav{
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: #ddd;
+        font-size: 18px;
+        font-weight: 200;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px;
+        /* background-color: red; */
+    }
+    .proNav >i >i {
+        margin-left: 10px;
+        
+    }
+    .porUname{
+        position: absolute; 
+        z-index: 12; 
+        left: 10%; 
+        bottom: 1%;
+        text-shadow: 0 0 5px black;
+    }
+    .account{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        background-color: #fff;
+        padding: 0 5px;
+        font-size: 12px;
+        box-shadow: 0 0 5px #aaa;
+        margin-bottom: 10px;
+    }
+    .fisrtLi, .secLi{
+        width: 95%;
+        display: flex;
+        flex-direction: column;
+        padding: 5px;
+        margin: 5px;
+        font-size: 14px;
+        border-bottom: 2px solid #eee;
+    }
+    .secLi{
+        flex-direction: row;
+        gap: 2vmax;
+    }
+    .secLi > i{
+        color: #808080;
+        font-size: 18px;
+        font-weight: 100;
+    }
+    .fisrtLi>span:nth-last-child(1){
+        font-size: 10px;
+        color: #aaa;
+        margin: 2px 0;
+    }
+    .ptag{
+        color: #0088cc; margin: 5px; font-weight: 700;
+    }
+
+</style>
+<%- include('partials/header') %>
+<div class="propAll">
+    
+    <div class="propUpD">
+        <div class="proNav">
+            <i class="ri-arrow-left-line" onclick="window.open('/', '_parent')"></i> <i class="ri-qr-scan-2-line"><i class="ri-more-2-line"></i></i>
+        </div>
+        <div alt="" class="proDP"><i class="ri-camera-fill changeDP"></i><h3 class="porUname" >Ajay Rajput <br>
+            <p class="onlineStatus">online</p></h3></div>
+    </div>
+    <div class="propdown">
+        <ul class="account">
+            <p class="ptag">Account</p>
+            <li  class="fisrtLi">
+                <span>+91 9876543210</span>
+                <span>Tab to change phone number</span>
+            </li>
+            <li class="fisrtLi">
+                <span>@ajayrajput3</span>
+                <span>Username</span>
+            </li>
+            <li class="fisrtLi">
+                <span>Bio</span>
+                <span>add a few words about yourself</span>
+            </li>
+        </ul>
+        <ul class="account ">
+            <p class="ptag">Setting</p>
+            <li class="secLi"><i class="ri-chat-3-line"></i><span>Chat Setting</span></li>
+            <li class="secLi"><i class="ri-lock-2-line"></i><span>Privacy and Security</span></li>
+            <li class="secLi"><i class="ri-notification-3-line"></i><span>Notifications and Sounds</span></li>
+            <li class="secLi"><i class="ri-pie-chart-2-line"></i><span>Data and Storage</span></li>
+            <li class="secLi"><i class="ri-battery-saver-line"></i><span>Power Saving</span></li>
+            <li class="secLi"><i class="ri-folder-line"></i><span>Chat Folder</span></li>
+            <li class="secLi"><i class="ri-device-line"></i><span>Device</span></li>
+            <li class="secLi "><i class="ri-global-line"></i><span>Language <span style="color: #0088cc;">(English)</span></span></li>
+        </ul>
+        <ul class="account">
+            <li class="secLi"><i class="ri-user-star-fill" style="color: #0088cc;"></i><span>Telegram Premium</span></li>
+        </ul>
+        <ul class="account">
+            <p class="ptag">Help</p>
+            <li class="secLi"><i class="ri-message-3-line"></i><span>Ask a Question</span></li>
+            <li class="secLi"><i class="ri-question-line"></i><span>Telegram FAQ</span></li>
+            <li class="secLi"><i class="ri-chat-private-line"></i><span>Privacy Policy</span></li>
+        </ul>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<%- include('partials/header') %>
+<%- include('partials/nav') %>
+<link rel="stylesheet" href="stylesheets/index.css">
+<div class="pencil"><a href="/frnd"><i class="ri-chat-new-line"></i></a></div>
+<%- include('partials/option')%>
+<span id="idContain" ids="<%= user.id %>"></span>
+<div class="scroll">
+    <ul class="storyDiv" id="storyDiv">
+        <% chatL.forEach(function(elem){ %>
+            <% if(elem.story === 'haiStory'){%>
+                <li >
+                    <div class="divDp <%= elem.story%>">
+                        <% if(elem.dp == 'false'){%>
+                            <span class="dpTxt">
+                                <% let arr1 = elem.username.split(' ') %>
+                                <% let fisrtL = arr1[0].split('') %>
+                                <% let lastL = arr1[arr1.length -1].split('') %>
+                                <%= fisrtL[0] %><%= lastL[0] %>
+                            </span>
+                            <% } else{ %>
+                                <img src="<%= elem.dp %>" alt="" class="chatDp ">
+                      <% } %>
+                    <div class="online <%= elem.online%>"></div>
+                    </div>
+                    <div class="divChatDetails">
+                        <h4 class="senderName"><span><%=elem.name %> 
+                        <% if(elem.varified === true){ %>
+                            <i class="ri-verified-badge-fill varified"></i>
+                        <%}%>
+                        </span> <span class="msgTime"><%= elem.time%></span></h4>
+                        
+                    </div>
+                </li>
+          <%  } %>
+        <% }) %>
+    </ul>
+    <ul class="chatList" id="chatList">
+        <% chatL.forEach(function(elem){ %>
+            <% let username='' %>
+            <% let userID='' %>
+             <% if(elem.among.usrname1 === user.username){ %>
+                    <% username = elem.among.usrname2 %>
+                    <% userID = elem.among.usr2 %>
+            <% } else{ %>
+                    <%  username = elem.among.usrname1  %>
+                    <%  userID = elem.among.usr1  %>
+            <% } %>
+            
+            <% if(elem.pin === true || elem.id === "archive"){ %>
+                    <li class="pinLi" chatID="<%= elem.id%>" onclick="window.open('/chat/<%= elem.id%>', '_parent')">
+           <% } else {%>
+            <li chatID="<%= elem.id%>" onclick="window.open('/chat/<%= elem._id%>/<%= %>', '_parent')">
+                <% } %>
+                <div class="divDp <%= elem.story%>">
+                    <% if(elem.dp !== 'false'){%>
+                        <span class="dpTxt">
+                            
+                            <% let arr1 = username.split(' ') %>
+                            <% let fisrtL = arr1[0].split('') %>
+                            <% let lastL = arr1[arr1.length -1].split('') %>
+                            <%= fisrtL[0] %><%= lastL[0] %>
+                        </span>
+                        <% } else{ %>
+                            <img src="<%= elem.dp %>" alt="<%= elem.dp %>" class="chatDp ">
+                  <% } %>
+                <div class="online <%= elem.online%>"></div>
+                </div>
+                <div class="divChatDetails">
+                    <h4 class="senderName"><span><%=username %> 
+                    <% if(elem.varified === true){ %>
+                        <i class="ri-verified-badge-fill varified"></i>
+                    <%}%>
+                    </span> <span class="msgTime"><span class="tik">
+                        <% if(elem.send === true){ %>
+                           <% if(elem.receiv === true){ %>
+                                <i class="ri-check-fill"></i>
+                           <% }else{ %>
+                            <i class="ri-check-double-line"></i>
+                           <% } %>
+                       <% } %>
+                    </span><%= elem.time%></span></h4>
+                    <p class="msgInfo <%= elem.impMsg %>"> <span><%=elem.msg%></span> 
+                        <% if(elem.pending > 0){ %>
+                            <span class="msgRece">
+                                <%= elem.pending %>
+                            </span>
+                        <%}%>
+                    </span>
+                    <% if(elem.pin === true){ %>
+
+                        <i class="ri-pushpin-fill pin">
+                   <% } %>
+
+                    </i></p>
+                </div>
+            </li>
+       <% }) %>
+    </ul>
+</div>
+<div class="viewChange">
+    <button class="chats switch"><i class="ri-question-answer-fill"></i>Chats</button>
+    <button class="stories switch"><i class="ri-memories-fill"></i>Stories</button>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/javascripts/index.js"></script>
+<%- include('partials/footer') %>
+</body>
+</html>

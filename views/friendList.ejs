@@ -1,0 +1,49 @@
+<%- include('partials/header') %>
+<%- include('partials/nav') %>
+<link rel="stylesheet" href="stylesheets/index.css">
+<div class="pencil"><i class="ri-chat-new-line"></i></i></div>
+<%- include('partials/option')%>
+<span id="idContain" ids="<%= user.id %>"></span>
+<div class="scroll">
+    
+    <ul class="chatList" id="chatList">
+        <% frnd.forEach(function(elem){ %>
+           <% let elemChatId = elem._id %>
+           <% elem.chats.forEach(function(ch){ %>
+            <%    if(user.chats.includes(ch)){ %>
+              <%      elemChatId = ch %>
+              <%  } %>
+           <% }) %>
+            <li chatID="<%= elemChatId %>" onclick="window.open('/chat/<%= elemChatId%>/<%= elem._id %>', '_parent')">
+                <div class="divDp <%= elem.story%>">
+                    <% if(elem.id === "archive"){ %>
+                        <i class="ri-inbox-archive-fill archive" ></i>
+                    <%} else if(elem.dp === 'false'){%>
+                        <span class="dpTxt">
+                            <% let arr1 = elem.username.split(' ') %>
+                            <% let fisrtL = arr1[0].split('') %>
+                            <% let lastL = arr1[arr1.length -1].split('') %>
+                            <%= fisrtL[0].toUpperCase() %><%= lastL[0].toUpperCase() %>
+                        </span>
+                        <% } else{ %>
+                            <img src="<%= elem.dp %>" alt="" class="chatDp ">
+                  <% } %>
+                <div class="online <%= elem.online%>"></div>
+                </div>
+                <div class="divChatDetails">
+                    <h4 class="senderName"><span><%=elem.username.toUpperCase() %> 
+                        <% if(elem.varified === true){ %>
+                            <i class="ri-verified-badge-fill varified"></i>
+                        <%}%>
+                        </span> <span class="msgTime">tab to start chat</span></h4>
+                </div>
+            </li>
+       <% }) %>
+    </ul>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/javascripts/index.js"></script>
+<%- include('partials/footer') %>
+</body>
+</html>

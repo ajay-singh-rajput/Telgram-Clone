@@ -1,0 +1,63 @@
+<%- include('partials/header') %>
+<link rel="stylesheet" href="/stylesheets/login.css">
+<div class="loginMainDIv">
+
+    <div class="formHolder">
+       <% let hideLogin = '' %>
+        <% let hideSignup = '' %>
+        <% let hideForgot = '' %>
+       <%if(fMsg.length == 0){%>
+        <% hideSignup = 'hide' %>
+        <% hideForgot = 'hide' %>
+        <%} else{ %>
+            <% hideForgot = 'hide' %>
+            <% hideLogin = 'hide' %>
+            <%} %>
+        <% if(rMsg === 'Email is not registered'){ %>
+                <% hideSignup = 'hide' %>
+                <% hideLogin = 'hide' %>
+                <% hideForgot = '' %>
+
+        <% } %>
+        <form action="/login" class="loginForm <%= hideLogin %>" method="post">
+            <h1>Log-In</h1>
+            <span class="inputHolder"><i class="ri-user-5-line"></i><input type="text" placeholder="username" name="username" class="username"></span>
+            <span class="inputHolder"><i class="ri-lock-2-line"></i><input type="password" name="password" placeholder="*******"></span>
+                <span class="alertMsg"><%= msg %></span>
+            <button class="loginBtn loginBtns">Log-In</button>
+        </form>
+        <form action="/signup" class="signupForm <%= hideSignup %>" method="post">
+            <h1>Sign-Up</h1>
+            <span class="inputHolder"><i class="ri-user-5-line"></i><input type="text" placeholder="username" name="username" class="username"></span>
+            <span class="inputHolder"><i class="ri-mail-line"></i><input type="email" placeholder="yourmail@example.com" name="email" class="email"></span>
+            <span class="inputHolder"><i class="ri-user-5-line"></i><input type="password" placeholder="******" name="password" class="password"></span>
+            <span class="alertMsg"><%= fMsg %></span>
+            <button class="signupBtn loginBtns">Sign-Up</button>
+        </form>
+        <form action="/forgot" class="forgotForm <%= hideForgot %>" method="post">
+            <h1>Forgot Password</h1>
+            <span class="inputHolder"><i class="ri-mail-line"></i><input type="email" placeholder="yourmail@example.com" name="email" class="email"></span>
+            <button class="forgotBtn loginBtns">Send Otp</button>
+        </form>
+        <span class="changeBtnHolder">
+          <%  if(hideForgot == 'hide'){ %>
+
+                <span class="forgotButton <%= hideLogin %>">Forgot Password</span>
+          <%  } else{ %>
+ 
+           <% } %>
+            <%if(fMsg.length == 0){%>
+                
+                <p class="ptag"><span class="changeTxt">Don't have an account </span> <span class="changeBtn">Sign-Up</span></p>
+                <%} else{ %>
+                    <p class="ptag"><span class="changeTxt">Already have an account </span> <span class="changeBtn">Log-In</span></p>
+               <%} %>
+        </span>
+    </div>
+
+</div>
+<%- include('partials/footer') %>
+
+<script src="/javascripts/login.js"></script>
+</body>
+</html>

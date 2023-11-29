@@ -1,0 +1,65 @@
+
+<link rel="stylesheet" href="/stylesheets/style.css">
+<link rel="stylesheet" href="/stylesheets/chatUi.css">
+
+<%- include('partials/header') %>
+<div class="chatMainDiv">
+    <span id="idContainer" userid="<%= usrID %>" frndid="<%= chatUser._id %>" chatid="<%= chatData._id %>"></span>
+    <div class="chatNav">
+        <a href="/"><i class="ri-arrow-left-line backArrow"></i></a><span class="chatNavCen">
+        
+                   <% if(chatUser.dp === 'false'){ %>
+                    <span class="dpTxt">
+                        <% let arr1 = chatUser.username.split(' ') %>
+                        <% let fisrtL = arr1[0].split('') %>
+                        <% let lastL = arr1[arr1.length -1].split('') %>
+                        <%= fisrtL[0] %><%= lastL[0] %>
+                    </span>
+                    <% } else { %>
+                        <img src="/<%= chatUser.dp%>" alt="" class="chatDP">
+                <%  } %>
+                    <span class="navName"><h4 class="nName"><%= chatUser.username.toUpperCase()%></h4><span class="navStatus">
+                        <% if(chatUser.online === true){ %>
+                            Online
+                      <%  } %>
+                    </span></span>
+                </span> <span style="display: flex;">
+                    <i class="ri-phone-fill backArrow" style="margin-right: 20px;"></i>
+                    <i class="ri-more-2-fill backArrow"></i>
+                </span>
+           
+    </div>
+    <div class="chatMid">
+        <ul class="chatUl">
+           <% if(!chatData) { %>
+            <% chatData.chats.forEach(function(elem){ %>
+                <% if(elem.sender === usrID) { %>
+                    <li class="msgS">
+                        <span class="msgContain"><%= elem.msg %></span><br>
+                        <div class="msgTime"><i class="ri-check-double-fill"></i>10:28 PM</div>
+                    </li>
+                <% } else { %>
+                    <li class="msgR">
+                        <span class="msgContain"><%= elem.msg %></span><br>
+                        <span class="msgTime">10:30 PM</span>
+                    </li>
+               <% } %>
+                    <% }) %>
+            <% } %>
+        </ul>
+    </div>
+    <div class="chatBottom">
+        <i class="ri-file-gif-line colorI"></i>
+        <form>
+            <textarea type="text" placeholder="Messages" name="text" class="messagesTextArea"></textarea>
+            <button class="sendBtn"><i class="ri-send-plane-2-fill colorI" ></i></button>
+            
+        </form>
+        <span><i class="ri-attachment-2 hideI1 colorI"></i><i class="ri-camera-lens-fill hideI2 colorI"></i></span>
+    </div>
+</div>
+<%- include('partials/footer') %>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/javascripts/chatUi.js"></script>
+</body>
+</html>

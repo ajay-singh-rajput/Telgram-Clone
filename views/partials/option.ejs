@@ -1,0 +1,160 @@
+<style>
+    .options {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        /* background-color: #0088cc; */
+        z-index: 101;
+        left: -100%;
+        background: rgba(0, 0, 0, 0.5);
+        -webkit-backdrop-filter: blur(2px);
+        backdrop-filter: blur(2px);
+        border: 1px solid rgba(0, 136, 204, 0.15);
+        transition: all ease 0.3s;
+        display: flex;
+    }
+
+    .opInside {
+        width: 80%;
+        height: 100%;
+        background-color: #ddd;
+        padding-top: 19px;
+        
+    }
+    .closeD{
+        width: 20%;
+        height: 100%;
+    }
+    .profileDP{
+        width: 100%;
+        height: fit-content;
+        color: #fff;
+        font-family: sans-serif;
+        /* background-color: #0088cc; */
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: end;
+        text-align: center;
+        padding-bottom: 5px;
+        /* gap: 10px; */
+        position: relative;
+    }
+    .userDP, .ulDP{
+        width: 85px;
+        height: 85px;
+        border-radius: 0 0 50% 50%;
+        display: flex;
+        align-items: end;
+        margin-left: 5px;
+        padding: 5px;
+        background-color: #0088cc;
+    }
+    .ulDP{
+        width: 35px;
+        height: 35px;
+    }
+    .userMobo{
+        width: 290px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        /* background-color: aqua; */
+    }
+    .mobo{
+        font-size: 10px;
+        color: #404040;
+    }
+    .changeTheme{
+        width: 100%;
+        /* height: 100%; */
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        padding: 4px 20px;
+        background-color: #0088cc;
+        }
+    .profileDetails{
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        position: absolute;
+        bottom: 0;
+        left: 2%;
+        color: #404040;
+    }
+    .userName{
+        width: 100%;
+        color: #404040;
+        line-height: 15px;
+    }
+    .addArrow{
+        cursor: pointer;
+        transition: all linear 0.2s;
+    }
+    .options a{
+        text-decoration: none;
+        color: #404040;
+        font-family: sans-serif;
+        display: flex;
+        gap: 1vmax;
+    }
+    .opUl1 > li{
+        margin-top: 10px;
+        margin-left: 10px;
+        display: flex;
+        align-items: center;
+        font-family: sans-serif;
+    }
+    .profileULList{
+        height: 0px;
+        overflow: hidden;
+        transition: all ease 0.2s;
+    }
+    .profileULList li{
+        gap: 1vmax;
+    }
+    .profileULList i{
+        margin: 0 10px;
+    }
+</style>
+<div class="options">
+    <div class="opInside">
+        <div class="profileDiv">
+            <div class="profileDP">
+                <div class="changeTheme"><i class="ri-moon-clear-fill"></i></div>
+                <a href="/profile">
+                <div class="userDP"><img src="images/animal.jpeg" alt="" class="userProDP" style="object-fit: cover; width: 75px;height: 75px; border-radius: 50%; border: 4px solid #ddd;"></div></a>
+                <div class="profileDetails">
+                    <div class="userName">Ajay Rajput <br><span class="mobo">+91 9876543210</span></div>
+                    <p class="userMobo"><span></span><i class="ri-arrow-down-s-line addArrow"></i></p>
+                </div>
+            </div>
+        </div>
+        <ul class="opUl1 profileULList">
+            <br>
+            <li>
+                <img src="images/animal.jpeg" alt=""  style="object-fit: cover; width: 35px;height: 35px; border-radius: 50%;">
+                <span>Ajay Rajput</span>
+            </li>
+            <li><i class="ri-add-line"></i>Add User</li><br>
+        </ul>
+        <hr>
+    <ul class="opUl1">
+        <li><a href="/newGroup"><i class="ri-group-line"></i>New Group</a></li>
+        <li><a href="/contact"><i class="ri-user-3-line"></i>Contact</a></li>
+        <li><a href="/calls"><i class="ri-phone-line"></i>Calls</a></li>
+        <li><a href="/nearby"><i class="ri-user-location-line"></i>People Nearby</a></li>
+        <li><a href="/saved"><i class="ri-bookmark-line"></i>Saved Messages</a></li>
+        <li><a href="/settings"><i class="ri-settings-3-line"></i>Settings</a></li>
+    </ul><br> <hr>
+    <ul class="opUl1">
+        <li><a target="_parent" href="/invite"><i class="ri-user-add-line"></i>Invite Friends</a></li>
+        <li><a href="/features"><i class="ri-question-line"></i>Telegram Features</a></li>
+    </ul>
+    </div>
+    <div class="closeD">
+
+    </div>
+</div>

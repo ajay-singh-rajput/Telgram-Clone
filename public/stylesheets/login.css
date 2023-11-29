@@ -1,0 +1,92 @@
+.loginMainDIv {
+    width: 100%;
+    height: 100%;
+    background: url(../images/blob-scene-haikei\ \(1\).svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.formHolder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.loginForm, .signupForm, .forgotForm {
+    width: 90%;
+    padding: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+/* .loginForm{
+    display: none;
+} */
+.hide{
+    display: none;
+}
+/* .signupForm{
+    display: none;
+} */
+.forgotForm{
+    display: none;
+}
+.changeBtnHolder {
+    font-size: 12px;
+    color: #404040;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.changeBtn, .forgotButton {
+    font-weight: 600;
+    color: #0088ce;
+    text-decoration: underline;
+}
+
+.formHolder h1 {
+    color: #0088ce;
+}
+
+.inputHolder {
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #eee;
+    border-radius: 10px;
+}
+
+.inputHolder i {
+    color: #0088ce;
+}
+
+.inputHolder input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
+.loginBtns {
+    padding: 8px 25px;
+    background-color: #0088cc;
+    color: #fff;
+    -webkit-box-shadow: 0 0 4.5px 1.5px #dddddd;
+    -moz-box-shadow: 0 0 4.5px 1.5px #dddddd;
+    box-shadow: 0 0 4.5px 1.5px #dddddd;
+    border: none;
+    border-radius: 10px;
+}
+.alertMsg{
+    font-size: 10px;
+    color: tomato;
+}
