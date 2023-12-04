@@ -8,10 +8,9 @@ const chatModel = require('../models/chatModel')
 const passport = require('passport');
 const localPassport = require('passport-local');
 const socketApi = require('../utils/socketapi');
-const gmailCred = require('../gmailcred.js')
 passport.use(new localPassport(userLogin.authenticate()))
 let fs = require('fs');
-const { error } = require('console');
+require('dotenv').config();
  
 
 
@@ -187,12 +186,12 @@ async function sendOtpFunction(email, otp, res){
     host:'smpt.gmail.com',
     port:465,
     auth:{
-      user:gmailCred.user,
-      pass:gmailCred.pass
+      user:process.env.user,
+      pass:process.env.pass
     }
   })
   const mailOptions = {
-    from:`Telegram Clone <${gmailCred.user}>`,
+    from:`Telegram Clone <${process.env.user}>`,
     to:email,
     subject:'Reset password OTP',
     html:`<h1>Your OTP is:- ${otp}</h1>`
