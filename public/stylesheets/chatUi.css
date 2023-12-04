@@ -16,6 +16,7 @@
     font-size: 18px;
     color: royalblue;
     border-radius: 50%;
+    text-transform: uppercase;
     /* border: 2px solid white; */
     background: linear-gradient(to right top, crimson, pink, crimson);
     color: #fff;
@@ -58,8 +59,9 @@
     display: none;
 }
 .msgR{
+    width: fit-content;
     max-width: 80%;
-    padding: 5px 0 5px 20px;
+    padding: 5px 5px 5px 20px;
     border-radius: 20px 10px 5px 5px;
     background-color: #fff;
     clip-path: polygon(4% 0%, 100% 0%, 100.1% 100.3%, 0% 100.3%, 2.5% 94%, 3.5% 88.3%, 4% 80.8%);
@@ -114,6 +116,7 @@ a{
     font-weight: normal;
     font-size: 17px;
     margin-bottom: 3px;
+    text-transform: capitalize;
 }
 .chatDP{
     width: 40px;
@@ -145,7 +148,7 @@ a{
     background: transparent;
     resize: none;
 }
-.chatBottom form{
+.chatBottom .form{
     width: 100%;
     display: flex;
     align-items: center;

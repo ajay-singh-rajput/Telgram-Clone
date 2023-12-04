@@ -38,6 +38,7 @@
         <% chatL.forEach(function(elem){ %>
             <% let username='' %>
             <% let userID='' %>
+            
              <% if(elem.among.usrname1 === user.username){ %>
                     <% username = elem.among.usrname2 %>
                     <% userID = elem.among.usr2 %>
@@ -49,7 +50,7 @@
             <% if(elem.pin === true || elem.id === "archive"){ %>
                     <li class="pinLi" chatID="<%= elem.id%>" onclick="window.open('/chat/<%= elem.id%>', '_parent')">
            <% } else {%>
-            <li chatID="<%= elem.id%>" onclick="window.open('/chat/<%= elem._id%>/<%= %>', '_parent')">
+            <li chatID="<%= elem.id%>" onclick="window.open('/chat/<%= elem._id%>/<%= userID %>', '_parent')">
                 <% } %>
                 <div class="divDp <%= elem.story%>">
                     <% if(elem.dp !== 'false'){%>

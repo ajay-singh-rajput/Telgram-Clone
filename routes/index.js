@@ -12,10 +12,9 @@ const gmailCred = require('../gmailcred.js')
 passport.use(new localPassport(userLogin.authenticate()))
 let fs = require('fs');
 const { error } = require('console');
-let times = new Date();
-function chatList (){
-  return JSON.parse(fs.readFileSync('public/json/chat.json','utf-8'))
-}
+ 
+
+
 
 
 /* GET home page. */
@@ -49,27 +48,26 @@ router.get('/chat/archive', function(req, res, next) {
   let idNumber = req.params.chatID
   res.json({ idNumber:idNumber});
 });
-router.get('/chat/:chatID/:usrID', async function(req, res, next) {
+router.get('/chat/:chatID/:usrID',isLogedIn, async function(req, res, next) {
   try {
     if(req.params.chatID == req.params.usrID){
       const chatUser = await userLogin.findById(req.params.usrID);
+      const mainUser = await userLogin.findById(req.user.id);
       const newChat = await chatModel({among:{
         usr1:req.user.id,
         usrname1:req.user.username,
         usr2:req.params.usrID,
         usrname2:chatUser.username,
       }});
-      req.user.chats.push(newChat._id);
+      await mainUser.chats.push(newChat._id);
       await chatUser.chats.push(newChat._id);
-      await chatUser.save();
-      await newChat.save();
+      await Promise.all([mainUser.save(), chatUser.save(), newChat.save()]);
       console.log('id created')
       res.render('chatUi',{chatUser:chatUser, usrID:req.user.id, chatData:newChat})
     } else {
       const chatUser = await userLogin.findById(req.params.usrID)
       if(chatUser.chats.includes(req.params.chatID) && req.user.chats.includes(req.params.chatID)){
         const chatData = await chatModel.findById(req.params.chatID)
-        console.log('id open')
         res.render('chatUi',{chatUser:chatUser, usrID:req.user.id, chatData:chatData})
       } else{
         console.log('not allow');

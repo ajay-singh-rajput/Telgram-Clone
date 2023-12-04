@@ -18,30 +18,40 @@
                     <% } else { %>
                         <img src="/<%= chatUser.dp%>" alt="" class="chatDP">
                 <%  } %>
-                    <span class="navName"><h4 class="nName"><%= chatUser.username.toUpperCase()%></h4><span class="navStatus">
+                    <span class="navName"><h4 class="nName"><%= chatUser.username%></h4><span class="navStatus">
                         <% if(chatUser.online === true){ %>
                             Online
                       <%  } %>
                     </span></span>
-                </span> <span style="display: flex;">
-                    <i class="ri-phone-fill backArrow" style="margin-right: 20px;"></i>
-                    <i class="ri-more-2-fill backArrow"></i>
+                </span> 
+                <span style="display: flex;">
+                    <!-- <i class="ri-phone-fill backArrow" style="margin-right: 20px;"></i>
+                    <i class="ri-more-2-fill backArrow"></i> -->
                 </span>
            
     </div>
     <div class="chatMid">
         <ul class="chatUl">
-           <% if(!chatData) { %>
+           <% if(chatData) { %>
             <% chatData.chats.forEach(function(elem){ %>
-                <% if(elem.sender === usrID) { %>
+                
+                <% if(elem.sender == usrID) { %>
                     <li class="msgS">
-                        <span class="msgContain"><%= elem.msg %></span><br>
-                        <div class="msgTime"><i class="ri-check-double-fill"></i>10:28 PM</div>
+                        <span class="msgContain">a <%= elem.msg %></span><br>
+                        <% if(elem.senddate === (new Date().toLocaleString().split(',')[0])) { %>
+                            <span class="msgTime">Today <%= elem.sendtime %></span>
+                        <% } else{ %>
+                            <span class="msgTime"><%= elem.senddate %>, <%= elem.sendtime %></span>
+                       <% } %>
                     </li>
                 <% } else { %>
                     <li class="msgR">
                         <span class="msgContain"><%= elem.msg %></span><br>
-                        <span class="msgTime">10:30 PM</span>
+                        <% if(elem.senddate === (new Date().toLocaleString().split(',')[0])) { %>
+                            <span class="msgTime">Today <%= elem.sendtime %></span>
+                        <% } else{ %>
+                            <span class="msgTime"><%= elem.senddate %>, <%= elem.sendtime %></span>
+                       <% } %>
                     </li>
                <% } %>
                     <% }) %>
@@ -50,11 +60,11 @@
     </div>
     <div class="chatBottom">
         <i class="ri-file-gif-line colorI"></i>
-        <form>
+        <span class="form">
             <textarea type="text" placeholder="Messages" name="text" class="messagesTextArea"></textarea>
             <button class="sendBtn"><i class="ri-send-plane-2-fill colorI" ></i></button>
             
-        </form>
+        </span>
         <span><i class="ri-attachment-2 hideI1 colorI"></i><i class="ri-camera-lens-fill hideI2 colorI"></i></span>
     </div>
 </div>

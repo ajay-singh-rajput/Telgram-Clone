@@ -21,42 +21,50 @@ chatUl.scrollBy(0,chatUl.clientHeight)
 // socket
 
 const socket = io();
-const usrID = document.querySelector('#idContainer').getAttribute('usrid')
+const usrID = document.querySelector('#idContainer').getAttribute('userid')
+// console.log(usrID)
 const frndID = document.querySelector('#idContainer').getAttribute('frndid')
 const chatID = document.querySelector('#idContainer').getAttribute('chatid')
 socket.emit('userId', usrID);
 
 sendBtn.addEventListener('click',async function(){
+    let timeonly = new Date().toLocaleString().split(',')[1].split(':')
     let msges = {
         sender:usrID,
         receiver:frndID,
-        msg:messagesTextArea.textContent,
-        chatID:chatID
+        msg:messagesTextArea.value,
+        chatID:chatID,
+        sendtime:(timeonly[0]+':'+timeonly[1]+' '+ timeonly[2].split(' ')[1]),
+        senddate:new Date().toLocaleString().split(',')[0],
     }
+    console.log(messagesTextArea.value, 'enter')
     await socket.emit('msges', msges);
     const li = document.createElement('li');
     li.appendChild(document.createTextNode(''));
     li.innerHTML = `
     <span class="msgContain">${msges.msg}</span><br>
-    <div class="msgTime"><i class="ri-check-double-fill"></i>${new Date().toLocaleTimeString()}</div>`
+    <div class="msgTime"></i>Today ${(timeonly[0]+':'+timeonly[1]+' '+ timeonly[2].split(' ')[1])}</div>`
     li.setAttribute('class','msgS');
     chatUl.appendChild(li)
-    messagesTextArea.textContent = ''
+    messagesTextArea.value = ''
     chatUl.scrollBy(0,chatUl.clientHeight);
 })
 
 
 socket.on(usrID, async (newMsg)=>{
     if(newMsg.receiver === usrID && chatID === newMsg.chatID){
+        console.log(newMsg, 'msg')
          const li = document.createElement('li')
          li.appendChild(document.createTextNode(''));
          li.innerHTML = `<span class="msgContain">${newMsg.msg}</span><br>
-         <span class="msgTime">${new Date().toLocaleTimeString()}</span>`
+         <span class="msgTime">Today ${newMsg.sendtime}</span>`
          li.setAttribute('class', 'msgR');
          chatUl.appendChild(li);
          chatUl.scrollBy(0,chatUl.clientHeight);
     }
 })
+
+
 
 
 
