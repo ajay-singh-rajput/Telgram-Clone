@@ -64,23 +64,28 @@
                         <% } else{ %>
                             <img src="<%= elem.dp %>" alt="<%= elem.dp %>" class="chatDp ">
                   <% } %>
-                <div class="online <%= elem.online%>"></div>
+                <div class="online <%= user.online%>"></div>
                 </div>
                 <div class="divChatDetails">
                     <h4 class="senderName"><span><%=username %> 
                     <% if(elem.varified === true){ %>
                         <i class="ri-verified-badge-fill varified"></i>
                     <%}%>
-                    </span> <span class="msgTime"><span class="tik">
-                        <% if(elem.send === true){ %>
-                           <% if(elem.receiv === true){ %>
+                    </span> <span class="msgTime"><% if(elem.chats[elem.chats.length -1].senddate === (new Date().toLocaleString().split(',')[0])){%> 
+                        <%= elem.chats[elem.chats.length -1].sendtime%>
+                    <% }else{ %>
+                        <%= elem.chats[elem.chats.length -1].senddate%> <%= elem.chats[elem.chats.length -1].sendtime%>
+                    <%}%>
+                    </span></h4>
+                    <p class="msgInfo <%= elem.impMsg %>"> <span><span class="tik">
+                        <% if(elem.chats[elem.chats.length -1].sender === user.id){ %>
+                            <i class="ri-check-double-line"></i>
+                            <% if(elem.receiv === true){ %>
                                 <i class="ri-check-fill"></i>
                            <% }else{ %>
-                            <i class="ri-check-double-line"></i>
                            <% } %>
                        <% } %>
-                    </span><%= elem.time%></span></h4>
-                    <p class="msgInfo <%= elem.impMsg %>"> <span><%=elem.msg%></span> 
+                    </span> <%=elem.chats[elem.chats.length -1].msg%></span> 
                         <% if(elem.pending > 0){ %>
                             <span class="msgRece">
                                 <%= elem.pending %>

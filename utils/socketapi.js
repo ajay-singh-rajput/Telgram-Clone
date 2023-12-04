@@ -28,13 +28,10 @@ io.on('connection', async function (socket) {
     });
 
     socket.on('msges', async (msges)=>{
-      // console.log('msg received')
       if(userID  == msges.sender){
-        // console.log('yaha to sab sahi hai')
         try {
           const chat = await userMsg.findById(msges.chatID);
           if (Object.values(chat.among).includes(msges.sender)) {
-            // console.log(msges,'yahi user hai', msges.sender)
             let timeonly = new Date().toLocaleString().split(',')[1].split(':')
             const newMsg = {
               sender:msges.sender,
