@@ -65,6 +65,18 @@ socket.on(usrID, async (newMsg)=>{
 })
 
 
+socket.on('online', function(online){
+    const onlines = online
+    console.log(online)
+    if(onlines.includes(frndID)){
+        document.querySelector('.navStatus').textContent = 'Online'
+    } else {
+        document.querySelector('.navStatus').textContent = ''
+    }
+})
+
+chatUl.scrollBy(0,chatUl.clientHeight);
+
 
 
 

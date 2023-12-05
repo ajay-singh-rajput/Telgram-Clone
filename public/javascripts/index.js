@@ -1,6 +1,7 @@
 let dpTxt = document.querySelectorAll('.dpTxt');
 const socket = io();
-socket.emit('userId', document.querySelector("#idContain").getAttribute('ids'))
+const usrID = document.querySelector("#idContain").getAttribute('ids')
+socket.emit('userId', usrID)
 function colorChange() {
 
     return dpTxt.forEach(function (elem) {
@@ -94,14 +95,25 @@ addArrow.addEventListener('click', function(){
     }
 })
 
-
+const allLi = document.querySelectorAll('.chatLI')
 socket.on('online',function(online){
     const onlines = online;
-    document.querySelectorAll('.chatLI').forEach(function(isOn){
+    allLi.forEach(function(isOn){
         if(onlines.includes(isOn.getAttribute('chatusr'))){
             isOn.querySelector('.online').setAttribute('class', 'online true')
         } else {
             isOn.querySelector('.online').setAttribute('class', 'online')
+        }
+    })
+})
+
+socket.on(usrID, async (newMsg)=>{
+    allLi.forEach(function(msg){
+        if(newMsg.sender === msg.getAttribute('chatusr')){
+            msg.querySelector('.sepmsg').textContent = newMsg.msg
+            msg.querySelector('.sepmsg').style.color = 'royalblue';
+            msg.style.background = '#00FFFF';
+            msg.querySelector('.tik').innerHTML = ''
         }
     })
 })

@@ -14,6 +14,7 @@ io.on('connection', async function (socket) {
     socket.on('userId',async function(user){
       userID = user
       onlineUser.push(user)
+      console.log('user online', onlineUser)
       io.emit('online', onlineUser);
       try {
         User = await users.findById(userID);
@@ -23,10 +24,11 @@ io.on('connection', async function (socket) {
         
       }
       socket.on('disconnect',async (dis)=>{
-        console.log('dissconcted')
+        console.log('dissconcted', dis)
         onlineUser.forEach(function(check, i){
           if(check === userID){
             onlineUser.splice(i, 1);
+            console.log('remain',onlineUser)
           }
         });
         io.emit('online', onlineUser);

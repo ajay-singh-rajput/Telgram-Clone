@@ -81,10 +81,11 @@
                            <% }else{ %>
                            <% } %>
                        <% } %>
-                    </span> <%=elem.chats[elem.chats.length -1].msg%></span> 
+                    </span><span class="sepmsg"><%=elem.chats[elem.chats.length -1].msg%></span> </span> 
                         <% if(elem.pending > 0){ %>
                             <span class="msgRece">
                                 <%= elem.pending %>
+                                
                             </span>
                         <%}%>
                     </span>
