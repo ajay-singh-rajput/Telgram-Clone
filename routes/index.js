@@ -11,17 +11,22 @@ const socketApi = require('../utils/socketapi');
 passport.use(new localPassport(userLogin.authenticate()))
 let fs = require('fs');
 require('dotenv').config();
- 
+
 
 
 
 
 /* GET home page. */
 router.get('/', isLogedIn,async function(req, res, next) {
-  const user = await req.user.populate('chats')
+  try {
+    const user = await req.user.populate('chats')
   const chats = await user.chats;
   // console.log( 'helo', chats);
   res.render('index',{chatL:chats, user:req.user});
+  } catch (error) {
+    res.send(error)
+  }
+  
 });
 
 router.get('/login', function(req, res, next) {

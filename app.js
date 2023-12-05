@@ -110,7 +110,7 @@ app.use(function(req, res, next) {
     margin: 20px 0;
     display: inline-block;}
 	.contant_box_404{ margin-top:-50px;}</style> `)
-  next(createError(404));
+//   next(createError(404));
 });
 
 // error handler

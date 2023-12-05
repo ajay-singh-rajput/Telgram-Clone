@@ -57,7 +57,7 @@ border-radius: 10px;
 .haiStory{
     background: linear-gradient(to left top,chartreuse, #0088cc, aqua, #0088cc, aquamarine);
 }
-.haiOnline{
+.true{
     width: 10px;
     height: 10px;
     background: chartreuse;
@@ -68,7 +68,7 @@ border-radius: 10px;
     bottom: 5%;
     /* z-index: 99; */
 }
-.haiOnline{
+.true{
     background: chartreuse;
 }
 /* .nhiOnline{

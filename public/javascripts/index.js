@@ -4,43 +4,30 @@ socket.emit('userId', document.querySelector("#idContain").getAttribute('ids'))
 function colorChange() {
 
     return dpTxt.forEach(function (elem) {
-        // elem.addEventListener('click',function(){
-        //     elem.style.background = "red"
-        // })
         let ran = Math.floor(Math.random() * 10);
-        // console.log("ran" + ran)
         if (ran === 1) {
-
             elem.style.background = `linear-gradient(to right top, #554DDE, #59D3FC, #554DDE)`
-            // elem.style.color = "#505050"
+            elem.style.color = "#505050"
         } else if (ran === 2) {
-
             elem.style.background = `linear-gradient(to right top, #991CD1, #D4307A, #991CD1)`
-            // elem.style.color = "aqua"
+            elem.style.color = "aqua"
         } else if (ran === 3) {
-
             elem.style.background = `linear-gradient(to right top, #124699, #D4307A, #124699)`
-            // elem.style.color = "yellow"
+            elem.style.color = "yellow"
         } else if (ran === 4) {
-
             elem.style.background = `linear-gradient(to right top, #ffafbd, #ffc3a0, #ffafbd)`
         } else if (ran === 5) {
-
             elem.style.background = `linear-gradient(to right top, #2193b0, #6dd5ed, #2193b0)`
         } else if (ran === 6) {
-
             elem.style.background = `linear-gradient(to right top, #ee9ca7, #ffdde1, #ee9ca7)`
         } else if (ran === 7) {
-
             elem.style.background = `linear-gradient(to right top, #2c3e50, #bdc3c7, #2c3e50)`
-            // elem.style.color = "yellow"
+            elem.style.color = "yellow"
         } else if (ran === 8) {
-
             elem.style.background = `linear-gradient(to right top, #de6262, #ffb88c, #de6262)`
         } else if (ran === 9) {
-
             elem.style.background = `linear-gradient(to right top, #48b1bf, #06beb6, #48b1bf)`
-            // elem.style.color = "#fff"
+            elem.style.color = "#fff"
         }
 
     })
@@ -105,4 +92,16 @@ addArrow.addEventListener('click', function(){
             profileULList.style.height = "0px"
             arrowCheck = 0;
     }
+})
+
+
+socket.on('online',function(online){
+    const onlines = online;
+    document.querySelectorAll('.chatLI').forEach(function(isOn){
+        if(onlines.includes(isOn.getAttribute('chatusr'))){
+            isOn.querySelector('.online').setAttribute('class', 'online true')
+        } else {
+            isOn.querySelector('.online').setAttribute('class', 'online')
+        }
+    })
 })

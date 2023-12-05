@@ -4,6 +4,7 @@ const socketapi = {
 };
 const userMsg = require('../models/chatModel');
 const users = require('../models/userModel');
+let onlineUser = []
 
 io.on('connection', async function (socket) {
     console.log('a user connected', socket.id);
@@ -12,7 +13,8 @@ io.on('connection', async function (socket) {
     let User;
     socket.on('userId',async function(user){
       userID = user
-      console.log('user', userID)
+      onlineUser.push(user)
+      io.emit('online', onlineUser);
       try {
         User = await users.findById(userID);
         User.online = ture;
@@ -22,6 +24,12 @@ io.on('connection', async function (socket) {
       }
       socket.on('disconnect',async (dis)=>{
         console.log('dissconcted')
+        onlineUser.forEach(function(check, i){
+          if(check === userID){
+            onlineUser.splice(i, 1);
+          }
+        });
+        io.emit('online', onlineUser);
         User.online = false;
           await User.save();
       })
