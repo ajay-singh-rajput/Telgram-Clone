@@ -56,5 +56,36 @@ forgotButton.addEventListener('click',()=>{
     
 })
 
+document.querySelectorAll('.loginBtns').forEach(function(btn){
+    if(!btn.getAttribute('class').includes('forgotBtn')){
+        btn.disabled = true;
+    }
+})
+const allForm = document.querySelectorAll('form')
+
+
+function validateForm(inp) {
+    var nameRegex = /^[a-z0-9\-]+$/;
+    var validfirstUsername = inp.value.match(nameRegex);
+
+    return validfirstUsername; // Return true if valid, false otherwise
+}
+
+allForm.forEach(function(child){
+   const usernameinput = child.querySelector('.username')
+   const alertM = child.querySelector('.alertMsg')
+   const sendBtn = child.querySelector('.loginBtns')
+   usernameinput.addEventListener('input', function(){
+    const isValid = validateForm(usernameinput);
+    if(!isValid){
+        alertM.textContent = 'Invalid username. Only characters a-z, 0-9, and \'-\' are acceptable.'
+        sendBtn.disabled = true
+    }else{
+        alertM.textContent =''
+        sendBtn.disabled = false
+    }
+   })
+})
+
 
 

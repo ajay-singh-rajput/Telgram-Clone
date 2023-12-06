@@ -67,13 +67,18 @@
                     <% if(elem.varified === true){ %>
                         <i class="ri-verified-badge-fill varified"></i>
                     <%}%>
-                    </span> <span class="msgTime"><% if(elem.chats[elem.chats.length -1].senddate === (new Date().toLocaleString().split(',')[0])){%> 
-                        <%= elem.chats[elem.chats.length -1].sendtime%>
-                    <% }else{ %>
-                        <%= elem.chats[elem.chats.length -1].senddate%> <%= elem.chats[elem.chats.length -1].sendtime%>
-                    <%}%>
+                    </span> <span class="msgTime">
+                       <% if(elem.chats.length > 0){ %>
+                        <% if(elem.chats[elem.chats.length -1].senddate === (new Date().toLocaleString().split(',')[0])){%> 
+                            <%= elem.chats[elem.chats.length -1].sendtime%>
+                        <% }else{ %>
+                            <%= elem.chats[elem.chats.length -1].senddate%> <%= elem.chats[elem.chats.length -1].sendtime%>
+                        <%}%>
+                        <% } %>
+                        
                     </span></h4>
                     <p class="msgInfo <%= elem.impMsg %>"> <span><span class="tik">
+                        <% if(elem.chats.length > 0){ %>
                         <% if(elem.chats[elem.chats.length -1].sender === user.id){ %>
                             <i class="ri-check-double-line"></i>
                             <% if(elem.receiv === true){ %>
@@ -81,7 +86,12 @@
                            <% }else{ %>
                            <% } %>
                        <% } %>
-                    </span><span class="sepmsg"><%=elem.chats[elem.chats.length -1].msg%></span> </span> 
+                       <% } %>
+                    </span><span class="sepmsg">
+                        <% if(elem.chats.length > 0){ %>
+                        <%=elem.chats[elem.chats.length -1].msg%>
+                        <% } %>
+                    </span> </span> 
                         <% if(elem.pending > 0){ %>
                             <span class="msgRece">
                                 <%= elem.pending %>
