@@ -62,7 +62,7 @@ try {
         // chatList.style.visibility = "visible"
         chatList.setAttribute('class','chatList')
         storyDiv.setAttribute('class','storyDiv')
-        pencil.innerHTML = `<i class="ri-chat-new-line">`
+        pencil.innerHTML = `<a href="/frnd"><i class="ri-chat-new-line"></i></a>`
     }) 
     stories.addEventListener("click", function(){
         chats.style.color = '#404040'
@@ -76,8 +76,6 @@ try {
 } catch (error) {
     
 }
-
-
 
 
 let addArrow = document.querySelector('.addArrow');

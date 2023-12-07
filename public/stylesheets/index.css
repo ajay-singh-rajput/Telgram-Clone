@@ -193,7 +193,7 @@ i{
 }
 .viewChange{
     width: 100%;
-    padding: 5px  10px;
+    padding: 10px  10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -202,7 +202,7 @@ i{
     position: absolute;
     z-index: 99;
     left: 0;
-    bottom: 4%;
+    bottom: 0;
     background-color: #0088cc;
     border-radius: 1vmax 1vmax 0 0;
     /* -webkit-backdrop-filter: blur(6px);
@@ -237,4 +237,8 @@ border: 1px solid rgba(32,32,32,0.325); */
 }
 .dn{
     display: none;
+}
+.pencil > a{
+    text-decoration: none;
+    color: #ffffff;
 }
