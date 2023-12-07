@@ -92,12 +92,17 @@
                         <%=elem.chats[elem.chats.length -1].msg%>
                         <% } %>
                     </span> </span> 
-                        <% if(elem.pending > 0){ %>
+                    <% if(elem.chats.length > 0){ %>
+                        <%if(elem.isread && elem.chats[elem.chats.length -1].sender == userID){%>
                             <span class="msgRece">
-                                <%= elem.pending %>
-                                
+                                unread
                             </span>
-                        <%}%>
+                        <%} else { %>
+                            <span class="msgRece dn">
+                                unread
+                            </span>
+                       <% }%>
+                    <%}%>
                     </span>
                     <% if(elem.pin === true){ %>
                         <i class="ri-pushpin-fill pin">

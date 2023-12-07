@@ -61,6 +61,7 @@ socket.on(usrID, async (newMsg)=>{
          li.setAttribute('class', 'msgR');
          chatUl.appendChild(li);
          chatUl.scrollBy(0,chatUl.clientHeight);
+         socket.emit('isread',{chatID:chatID,usrID:usrID})
     }
 })
 
@@ -74,6 +75,7 @@ socket.on('online', function(online){
         document.querySelector('.navStatus').textContent = ''
     }
 })
+socket.emit('isread',{chatID:chatID,usrID:usrID})
 
 chatUl.scrollBy(0,chatUl.clientHeight);
 

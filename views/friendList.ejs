@@ -14,6 +14,9 @@
               <%      elemChatId = ch %>
               <%  } %>
            <% }) %>
+           <% if(user.id !== elem.id){ %>
+
+            
             <li chatID="<%= elemChatId %>" onclick="window.open('/chat/<%= elemChatId%>/<%= elem._id %>', '_parent')">
                 <div class="divDp <%= elem.story%>">
                     <% if(elem.id === "archive"){ %>
@@ -38,6 +41,7 @@
                         </span> <span class="msgTime">tab to start chat</span></h4>
                 </div>
             </li>
+            <% } %>
        <% }) %>
     </ul>
 </div>

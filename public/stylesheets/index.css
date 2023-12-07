@@ -235,3 +235,6 @@ border: 1px solid rgba(32,32,32,0.325); */
     overflow: hidden;
     padding: 0;
 }
+.dn{
+    display: none;
+}

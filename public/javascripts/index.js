@@ -114,6 +114,7 @@ socket.on(usrID, async (newMsg)=>{
             msg.querySelector('.sepmsg').style.color = 'royalblue';
             msg.style.background = '#00FFFF';
             msg.querySelector('.tik').innerHTML = ''
+            msg.querySelector('.msgRece').style.display = 'flex'
         }
     })
 })
