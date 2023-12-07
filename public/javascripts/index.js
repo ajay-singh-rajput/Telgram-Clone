@@ -127,12 +127,11 @@ const showButton = document.querySelectorAll('.storyLi');
 // "Show the dialog" button opens the dialog modally
 showButton.forEach(function(elem){
     elem.addEventListener("click", () => {
-    //   dialog.showModal();
-      elem.querySelector('dialog').showModal();
-      elem.querySelector('.closed').addEventListener("click", () => {
-        console.log('close')
-        elem.querySelector('dialog').close();
-    });
+    const dialog = elem.querySelector('dialog');
+    dialog.showModal();
+    setTimeout(function(){
+        dialog.close();
+    },3000)
     });
 })
 
