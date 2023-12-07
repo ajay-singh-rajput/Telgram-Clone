@@ -11,7 +11,7 @@ const socketApi = require('../utils/socketapi');
 passport.use(new localPassport(userLogin.authenticate()))
 let fs = require('fs');
 require('dotenv').config();
-
+var upload = require("../utils/multer").single("storyfile");
 
 
 
@@ -21,8 +21,9 @@ router.get('/', isLogedIn,async function(req, res, next) {
   try {
     const user = await req.user.populate('chats')
   const chats = await user.chats;
+  const story = await storyModel.find().populate('user')
   // console.log( 'helo', chats);
-  res.render('index',{chatL:chats, user:req.user});
+  res.render('index',{chatL:chats, user:req.user, story:story});
   } catch (error) {
     res.send(error)
   }
@@ -124,6 +125,27 @@ router.get('/frnd', isLogedIn,async function(req, res){
     console.log(error)
     res.send(error)
   }
+})
+
+router.get('/storyUpload',isLogedIn, async function(req, res, next){
+    res.render('storyUpload.ejs',{user:req.user})
+})
+router.post('/storyUpload',isLogedIn, async function(req, res, next){
+  upload(req, res, async function(err){
+    if(err)throw err;
+  try {
+    const newStory = await storyModel({
+      typeofstatus:'image',
+      storydata:req.file.filename,
+      user:req.user.id
+    })
+    await req.user.story.push(newStory._id)
+    await Promise.all([req.user.save(), newStory.save()])
+    res.json(newStory)
+  } catch (error) {
+    
+  }
+})
 })
 
 // sign up routes

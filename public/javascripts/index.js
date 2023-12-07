@@ -71,7 +71,7 @@ try {
         stories.style.fontWeight = '500'
         chatList.setAttribute('class','storyDiv')
         storyDiv.setAttribute('class','chatList')
-        pencil.innerHTML = `<i class="ri-image-add-fill"></i>`
+        pencil.innerHTML = `<a href="/storyUpload"><i class="ri-image-add-fill"></i></a>`
     })
 } catch (error) {
     
@@ -116,3 +116,24 @@ socket.on(usrID, async (newMsg)=>{
         }
     })
 })
+
+
+
+
+// const dialog = document.querySelector("dialog");
+const showButton = document.querySelectorAll('.storyLi');
+// const closeButton = document.querySelector(".closed");
+
+// "Show the dialog" button opens the dialog modally
+showButton.forEach(function(elem){
+    elem.addEventListener("click", () => {
+    //   dialog.showModal();
+      elem.querySelector('dialog').showModal();
+      elem.querySelector('.closed').addEventListener("click", () => {
+        console.log('close')
+        elem.querySelector('dialog').close();
+    });
+    });
+})
+
+// "Close" button closes the dialog

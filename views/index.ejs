@@ -5,17 +5,18 @@
 <%- include('partials/option')%>
 <span id="idContain" ids="<%= user.id %>"></span>
 <div class="scroll">
+    
     <ul class="storyDiv" id="storyDiv">
-        <% chatL.forEach(function(elem){ %>
-            <% if(elem.story === 'haiStory'){%>
-                <li >
-                    <div class="divDp <%= elem.story%>">
-                        <% if(elem.dp == 'false'){%>
+        <% if(story.length > 0){ %>
+        <% story.forEach(function(elem){ %>
+            <% if(elem.user.id !== user.id){ %>
+                <li class="storyLi" strid="<%=elem.id%>">
+                    <div class="divDp haiStory">
+                        <% if(elem.dp !== 'false'){%>
                             <span class="dpTxt">
-                                <% let arr1 = elem.username.split(' ') %>
+                                <% let arr1 = elem.user.username.split(' ') %>
                                 <% let fisrtL = arr1[0].split('') %>
-                                <% let lastL = arr1[arr1.length -1].split('') %>
-                                <%= fisrtL[0] %><%= lastL[0] %>
+                                <%= fisrtL[0] %>
                             </span>
                             <% } else{ %>
                                 <img src="<%= elem.dp %>" alt="" class="chatDp ">
@@ -23,15 +24,23 @@
                     <div class="online <%= elem.online%>"></div>
                     </div>
                     <div class="divChatDetails">
-                        <h4 class="senderName"><span><%=elem.name %> 
+                        <h4 class="senderName"><span><%=elem.user.username %> 
                         <% if(elem.varified === true){ %>
                             <i class="ri-verified-badge-fill varified"></i>
                         <%}%>
                         </span> <span class="msgTime"><%= elem.time%></span></h4>
                     </div>
+                    <dialog>
+                        <button autofocus class="closed">Close</button>
+                        <img src="/uploads/<%= elem.storydata%>" alt="/<%= story.storydata%>">
+                      </dialog>
                 </li>
-          <%  } %>
+            <% } %>
         <% }) %>
+        <% } %>
+       
+        
+          
     </ul>
     <ul class="chatList" id="chatList">
         <% chatL.forEach(function(elem){ %>

@@ -1,0 +1,16 @@
+<%- include('partials/header') %>
+<%- include('partials/navstory') %>
+<link rel="stylesheet" href="stylesheets/index.css">
+
+<div class="storyMain">
+    <form action="/storyUpload" method="post" enctype="multipart/form-data">
+        <input type="file" name="storyfile" >
+        <button>story Upload</button>
+    </form>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/javascripts/index.js"></script>
+<%- include('partials/footer') %>
+</body>
+</html>
