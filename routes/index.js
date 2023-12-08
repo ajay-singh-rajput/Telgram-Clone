@@ -141,7 +141,7 @@ router.post('/storyUpload',isLogedIn, async function(req, res, next){
     })
     await req.user.story.push(newStory._id)
     await Promise.all([req.user.save(), newStory.save()])
-    res.json(newStory)
+    res.redirect('/')
   } catch (error) {
     
   }
